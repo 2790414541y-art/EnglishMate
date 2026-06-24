@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnglishMate - AI English Correction Demo</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --ink: #162033;
+      --muted: #667085;
+      --line: #e3e8ef;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #0891b2;
+      --warn: #f59e0b;
+      --soft-blue: #eaf2ff;
+      --soft-green: #e9fbf4;
+      --soft-orange: #fff6e7;
+      --shadow: 0 18px 50px rgba(22, 32, 51, 0.1);
+      --card-shadow: 0 10px 34px rgba(22, 32, 51, 0.07);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    button,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(8, 145, 178, 0.11)),
+        #ffffff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .nav-note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 46px;
+      align-items: center;
+      padding: 66px 0 78px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 16px;
+      padding: 6px 10px;
+      border: 1px solid #cfe0ff;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(52px, 8vw, 88px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 18px 0 10px;
+      color: #344054;
+      font-size: clamp(18px, 2.4vw, 24px);
+      font-weight: 700;
+    }
+
+    .description {
+      max-width: 640px;
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 12px 26px rgba(37, 99, 235, 0.25);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .primary-button:hover {
+      background: linear-gradient(135deg, var(--primary-dark), #0e7490);
+      transform: translateY(-1px);
+    }
+
+    .primary-button:disabled {
+      cursor: wait;
+      opacity: 0.8;
+      transform: none;
+    }
+
+    .hero-preview {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+    }
+
+    .preview-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .mini-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .status-pill {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--soft-green);
+      color: #047857;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .sentence-box {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: #344054;
+    }
+
+    .sentence-box + .sentence-box {
+      margin-top: 12px;
+    }
+
+    .wrong {
+      color: #b42318;
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+    }
+
+    .right {
+      color: #057a55;
+      font-weight: 800;
+    }
+
+    section {
+      padding: 64px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 26px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card,
+    .workspace,
+    .result-panel,
+    .note-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--card-shadow);
+    }
+
+    .feature-card {
+      padding: 20px;
+    }
+
+    .feature-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 16px;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--soft-blue);
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .feature-card:nth-child(2) .feature-icon {
+      background: var(--soft-green);
+      color: #047857;
+    }
+
+    .feature-card:nth-child(3) .feature-icon {
+      background: var(--soft-orange);
+      color: #b45309;
+    }
+
+    .feature-card:nth-child(4) .feature-icon {
+      background: #f1edff;
+      color: #6941c6;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .experience {
+      background: #ffffff;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 0;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .input-panel,
+    .output-panel {
+      padding: 24px;
+    }
+
+    .input-panel {
+      border-right: 1px solid var(--line);
+      background: #fbfcff;
+    }
+
+    .panel-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .panel-label h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .helper {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .sample-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 18px 0 10px;
+      color: #344054;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .click-hint {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 164px;
+      resize: vertical;
+      padding: 16px;
+      border: 1px solid #cfd8e3;
+      border-radius: var(--radius);
+      outline: none;
+      background: #fff;
+      color: var(--ink);
+      font-size: 16px;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    .example-row {
+      display: grid;
+      gap: 10px;
+      margin: 0 0 16px;
+    }
+
+    .example-btn {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: #344054;
+      text-align: left;
+      font-weight: 700;
+      transition: border 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+
+    .example-btn:hover,
+    .example-btn.active {
+      border-color: #9bbcff;
+      background: var(--soft-blue);
+      transform: translateY(-1px);
+    }
+
+    .analyze-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .loading-dot {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 3px solid rgba(37, 99, 235, 0.18);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .is-loading .loading-dot {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .empty-state {
+      display: grid;
+      min-height: 420px;
+      place-items: center;
+      padding: 28px;
+      border: 1px dashed #cfd8e3;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(8, 145, 178, 0.04)),
+        #fbfcff;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .empty-state strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+      font-size: 18px;
+    }
+
+    .result-panel {
+      display: none;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .result-panel.show {
+      display: block;
+      animation: rise 0.28s ease both;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .result-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(8, 145, 178, 0.06)),
+        #fbfcff;
+    }
+
+    .result-header h3 {
+      margin: 0 0 4px;
+      font-size: 20px;
+    }
+
+    .result-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .confidence {
+      min-width: 92px;
+      padding: 8px 10px;
+      border-radius: var(--radius);
+      background: var(--soft-green);
+      color: #047857;
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .report-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .summary-item {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfcff;
+    }
+
+    .summary-item span {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .summary-item strong {
+      color: #23314d;
+      font-size: 14px;
+    }
+
+    .result-body {
+      display: grid;
+      gap: 16px;
+      padding: 20px;
+    }
+
+    .analysis-block {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .analysis-block h4 {
+      margin: 0 0 10px;
+      color: #23314d;
+      font-size: 16px;
+    }
+
+    .analysis-block h4::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      vertical-align: 1px;
+    }
+
+    .correction-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .sentence-label {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .sentence-value {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .explain-text {
+      margin: 0;
+      color: #344054;
+    }
+
+    .optimization-list,
+    .example-list,
+    .notes-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .optimization-list li,
+    .example-list li {
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      background: #f8fafc;
+      color: #344054;
+    }
+
+    .example-list {
+      counter-reset: example;
+    }
+
+    .example-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .example-list li::before {
+      counter-increment: example;
+      content: counter(example);
+      display: grid;
+      flex: 0 0 24px;
+      width: 24px;
+      height: 24px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--soft-blue);
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .optimization-list strong {
+      color: var(--primary-dark);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .feedback-tag {
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #344054;
+      font-size: 14px;
+      transition: border 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .feedback-tag:hover,
+    .feedback-tag.selected {
+      border-color: var(--primary);
+      background: var(--soft-blue);
+      color: var(--primary-dark);
+    }
+
+    .feedback-message {
+      display: none;
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      background: var(--soft-green);
+      color: #047857;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .feedback-message.show {
+      display: block;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+
+    .step {
+      position: relative;
+      min-height: 86px;
+      padding: 16px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(22, 32, 51, 0.05);
+    }
+
+    .step-number {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      margin: 0 auto 8px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .step span:last-child {
+      color: #344054;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .portfolio {
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(8, 145, 178, 0.05)),
+        #fff;
+      border-top: 1px solid var(--line);
+    }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    .note-card {
+      grid-column: span 3;
+      padding: 20px;
+    }
+
+    .note-card.wide {
+      grid-column: span 6;
+    }
+
+    .note-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .note-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner,
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner {
+        padding-top: 36px;
+      }
+
+      .input-panel {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .feature-grid,
+      .notes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .flow {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .report-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .notes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .note-card,
+      .note-card.wide {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-note {
+        font-size: 13px;
+      }
+
+      section {
+        padding: 46px 0;
+      }
+
+      .feature-grid,
+      .notes-grid,
+      .correction-grid,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-preview,
+      .input-panel,
+      .output-panel {
+        padding: 18px;
+      }
+
+      .result-header {
+        flex-direction: column;
+      }
+
+      .confidence {
+        min-width: 0;
+      }
+
+      .analyze-row {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .primary-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="container">
+        <nav class="nav" aria-label="Main navigation">
+          <div class="brand">
+            <span class="brand-mark">E</span>
+            <span>EnglishMate</span>
+          </div>
+          <span class="nav-note">AI English correction prototype</span>
+        </nav>
+
+        <div class="hero-inner">
+          <div>
+            <p class="eyebrow">AI Product Internship Portfolio · MVP Prototype</p>
+            <h1>EnglishMate</h1>
+            <p class="subtitle">AI-powered English correction and expression assistant</p>
+            <p class="description">输入一句英文，快速看懂错误原因，并学习更自然的表达。</p>
+            <button class="primary-button" id="startButton" type="button">Start Analyzing</button>
+          </div>
+
+          <aside class="hero-preview" aria-label="EnglishMate preview">
+            <div class="preview-top">
+              <p class="mini-title">AI analysis preview</p>
+              <span class="status-pill">Mock Report</span>
+            </div>
+            <div class="sentence-box">
+              <p class="sentence-label">Original</p>
+              <p class="sentence-value"><span class="wrong">I am very like</span> this movie.</p>
+            </div>
+            <div class="sentence-box">
+              <p class="sentence-label">Corrected</p>
+              <p class="sentence-value"><span class="right">I really like</span> this movie.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="container">
+          <div class="section-heading">
+            <h2>Core Capabilities</h2>
+            <p>From correction to explanation, the Demo shows a complete learning-oriented AI product loop.</p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="feature-icon">G</div>
+              <h3>Grammar Correction</h3>
+              <p>识别基础语法错误</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">中</div>
+              <h3>Chinese Explanation</h3>
+              <p>用中文解释错误原因</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">O</div>
+              <h3>Expression Optimization</h3>
+              <p>提供更自然的英文表达</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">Ex</div>
+              <h3>Example Generation</h3>
+              <p>生成可迁移学习的例句</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="experience" id="analyzeArea">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Core Experience</h2>
+            <p>Click a sample sentence or type your own input to generate a simulated AI analysis report.</p>
+          </div>
+
+          <div class="workspace">
+            <div class="input-panel">
+              <div class="panel-label">
+                <h3>1. English Input</h3>
+                <span class="helper">Single sentence MVP</span>
+              </div>
+              <textarea id="sentenceInput" aria-label="English sentence input" placeholder="Type an English sentence here...">I am very like this movie.</textarea>
+
+              <div class="sample-title">
+                <span>Try sample sentences</span>
+                <span class="click-hint">Click to experience</span>
+              </div>
+              <div class="example-row" aria-label="Example sentences">
+                <button class="example-btn active" type="button" data-example="I am very like this movie.">I am very like this movie.</button>
+                <button class="example-btn" type="button" data-example="He go to school every day.">He go to school every day.</button>
+                <button class="example-btn" type="button" data-example="I have many homework today.">I have many homework today.</button>
+              </div>
+
+              <div class="analyze-row" id="analyzeRow">
+                <button class="primary-button" id="analyzeButton" type="button">
+                  <span id="analyzeText">Analyze</span>
+                  <span class="loading-dot" aria-hidden="true"></span>
+                </button>
+                <span class="helper">Mock data only · No API request</span>
+              </div>
+            </div>
+
+            <div class="output-panel">
+              <div class="empty-state" id="emptyState">
+                <div>
+                  <strong>AI analysis report will appear here.</strong>
+                  <span>The report includes correction, Chinese explanation, better expressions, examples, and feedback collection.</span>
+                </div>
+              </div>
+
+              <article class="result-panel" id="resultPanel" aria-live="polite">
+                <div class="result-header">
+                  <div>
+                    <h3>AI Analysis Report</h3>
+                    <p id="resultNote">Mock result matched from the sample library.</p>
+                  </div>
+                  <div class="confidence">Learning Fit</div>
+                </div>
+
+                <div class="report-summary" aria-label="Analysis summary">
+                  <div class="summary-item">
+                    <span>Mode</span>
+                    <strong>Mock AI Analysis</strong>
+                  </div>
+                  <div class="summary-item">
+                    <span>Focus</span>
+                    <strong>Grammar + Naturalness</strong>
+                  </div>
+                  <div class="summary-item">
+                    <span>Output</span>
+                    <strong>Correction + Practice</strong>
+                  </div>
+                </div>
+
+                <div class="result-body">
+                  <section class="analysis-block" aria-label="Original sentence">
+                    <h4>Original Sentence</h4>
+                    <p class="sentence-value" id="originalSentence"></p>
+                  </section>
+
+                  <section class="analysis-block" aria-label="Corrected sentence">
+                    <h4>Corrected Sentence</h4>
+                    <p class="sentence-value right" id="correctedSentence"></p>
+                  </section>
+
+                  <section class="analysis-block" aria-label="Chinese explanation">
+                    <h4>Chinese Explanation</h4>
+                    <p class="explain-text" id="explanationText"></p>
+                  </section>
+
+                  <section class="analysis-block" aria-label="Better expressions">
+                    <h4>Better Expressions</h4>
+                    <ul class="optimization-list" id="optimizationList"></ul>
+                  </section>
+
+                  <section class="analysis-block" aria-label="Example sentences">
+                    <h4>Example Sentences</h4>
+                    <ul class="example-list" id="exampleList"></ul>
+                  </section>
+
+                  <section class="analysis-block" aria-label="Feedback">
+                    <h4>Feedback</h4>
+                    <div class="tag-row" id="feedbackTags">
+                      <button class="feedback-tag" type="button">解释太复杂</button>
+                      <button class="feedback-tag" type="button">修改不自然</button>
+                      <button class="feedback-tag" type="button">没看懂原因</button>
+                      <button class="feedback-tag" type="button">例句不够实用</button>
+                    </div>
+                    <div class="feedback-message" id="feedbackMessage">感谢反馈，该问题已加入后续优化清单。</div>
+                  </section>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-heading">
+            <h2>Product Flow</h2>
+            <p>The first version focuses on a clear and explainable learning path.</p>
+          </div>
+
+          <div class="flow" aria-label="Product flow steps">
+            <div class="step"><span class="step-number">1</span><span>Input</span></div>
+            <div class="step"><span class="step-number">2</span><span>Analyze</span></div>
+            <div class="step"><span class="step-number">3</span><span>Correct</span></div>
+            <div class="step"><span class="step-number">4</span><span>Explain</span></div>
+            <div class="step"><span class="step-number">5</span><span>Optimize</span></div>
+            <div class="step"><span class="step-number">6</span><span>Feedback</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="portfolio">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Portfolio Notes</h2>
+            <p>Product thinking, user value, MVP boundary, and next iteration direction for portfolio review.</p>
+          </div>
+
+          <div class="notes-grid">
+            <article class="note-card">
+              <h3>Product Goal</h3>
+              <p>帮助英语学习者理解句子错误，并学习更自然的表达。</p>
+            </article>
+            <article class="note-card">
+              <h3>User Pain Point</h3>
+              <p>普通翻译工具通常只给结果，不解释原因。</p>
+            </article>
+            <article class="note-card">
+              <h3>MVP Scope</h3>
+              <p>第一版只做单页原型、mock 数据和基础反馈机制。</p>
+            </article>
+            <article class="note-card">
+              <h3>Skills Demonstrated</h3>
+              <p>英语学习场景理解、AI 产品功能链路设计、问题反馈机制设计、网页原型搭建能力。</p>
+            </article>
+            <article class="note-card wide">
+              <h3>Future Iteration</h3>
+              <p>后续可以接入真实 AI 接口，支持错误类型分类、历史记录、个性化例句、学习进度追踪和更细粒度的反馈闭环。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">EnglishMate Demo · Built with HTML, CSS, and JavaScript</div>
+    </footer>
+  </div>
+
+  <script>
+    const mockResults = {
+      "I am very like this movie.": {
+        corrected: "I really like this movie.",
+        explanation: "like 是实义动词，前面不需要 am；very 通常修饰形容词或副词，不能直接修饰 like。",
+        optimizations: [
+          ["Basic", "I really like this movie."],
+          ["Natural", "I really enjoyed this movie."],
+          ["Spoken", "This movie was really good."]
+        ],
+        examples: [
+          "I really like this song.",
+          "She really likes learning English.",
+          "We really enjoyed the trip."
+        ]
+      },
+      "He go to school every day.": {
+        corrected: "He goes to school every day.",
+        explanation: "主语 He 是第三人称单数，一般现在时中动词 go 需要变成 goes。",
+        optimizations: [
+          ["Basic", "He goes to school every day."],
+          ["Natural", "He attends school every day."],
+          ["Spoken", "He goes to school every day."]
+        ],
+        examples: [
+          "She goes to work every morning.",
+          "My brother plays basketball after school.",
+          "He studies English every night."
+        ]
+      },
+      "I have many homework today.": {
+        corrected: "I have a lot of homework today.",
+        explanation: "homework 是不可数名词，不能直接用 many 修饰，应该用 a lot of 或 much。",
+        optimizations: [
+          ["Basic", "I have a lot of homework today."],
+          ["Natural", "I have quite a lot of homework to do today."],
+          ["Spoken", "I’ve got tons of homework today."]
+        ],
+        examples: [
+          "I have a lot of work to do.",
+          "She has much more homework this week.",
+          "We have plenty of time."
+        ]
+      }
+    };
+
+    const genericResult = {
+      corrected: "This demo can display a simulated correction result.",
+      explanation: "当前 Demo 使用模拟数据，后续可以接入真实 AI 接口，根据用户输入生成更准确的纠错、中文解释、表达优化和例句。",
+      optimizations: [
+        ["Basic", "This sentence can be improved with clearer grammar."],
+        ["Natural", "A future AI version could make the sentence sound more natural."],
+        ["Spoken", "The tool can also suggest a more casual spoken version."]
+      ],
+      examples: [
+        "I want to make my English sentence clearer.",
+        "This tool helps learners understand their mistakes.",
+        "Good examples make grammar easier to remember."
+      ],
+      isGeneric: true
+    };
+
+    const startButton = document.getElementById("startButton");
+    const input = document.getElementById("sentenceInput");
+    const exampleButtons = document.querySelectorAll(".example-btn");
+    const analyzeButton = document.getElementById("analyzeButton");
+    const analyzeText = document.getElementById("analyzeText");
+    const analyzeRow = document.getElementById("analyzeRow");
+    const emptyState = document.getElementById("emptyState");
+    const resultPanel = document.getElementById("resultPanel");
+    const resultNote = document.getElementById("resultNote");
+    const originalSentence = document.getElementById("originalSentence");
+    const correctedSentence = document.getElementById("correctedSentence");
+    const explanationText = document.getElementById("explanationText");
+    const optimizationList = document.getElementById("optimizationList");
+    const exampleList = document.getElementById("exampleList");
+    const feedbackTags = document.getElementById("feedbackTags");
+    const feedbackMessage = document.getElementById("feedbackMessage");
+
+    function normalizeSentence(value) {
+      return value.trim().replace(/\s+/g, " ");
+    }
+
+    function setActiveExample(sentence) {
+      exampleButtons.forEach((button) => {
+        button.classList.toggle("active", button.dataset.example === sentence);
+      });
+    }
+
+    function renderResult(sentence, result) {
+      originalSentence.textContent = sentence || "No sentence entered.";
+      correctedSentence.textContent = result.corrected;
+      explanationText.textContent = result.explanation;
+      resultNote.textContent = result.isGeneric
+        ? "Generic mock structure shown for custom input."
+        : "Mock result matched from the sample library.";
+
+      optimizationList.innerHTML = "";
+      result.optimizations.forEach(([level, text]) => {
+        const item = document.createElement("li");
+        item.innerHTML = "<strong>" + level + ":</strong> " + text;
+        optimizationList.appendChild(item);
+      });
+
+      exampleList.innerHTML = "";
+      result.examples.forEach((example) => {
+        const item = document.createElement("li");
+        item.textContent = example;
+        exampleList.appendChild(item);
+      });
+
+      feedbackMessage.classList.remove("show");
+      document.querySelectorAll(".feedback-tag").forEach((tag) => tag.classList.remove("selected"));
+      emptyState.style.display = "none";
+      resultPanel.classList.add("show");
+    }
+
+    function analyzeSentence() {
+      const sentence = normalizeSentence(input.value);
+      const result = mockResults[sentence] || genericResult;
+
+      analyzeButton.disabled = true;
+      analyzeRow.classList.add("is-loading");
+      analyzeText.textContent = "Analyzing";
+
+      window.setTimeout(() => {
+        renderResult(sentence, result);
+        setActiveExample(mockResults[sentence] ? sentence : "");
+        analyzeButton.disabled = false;
+        analyzeRow.classList.remove("is-loading");
+        analyzeText.textContent = "Analyze";
+      }, 650);
+    }
+
+    startButton.addEventListener("click", () => {
+      document.getElementById("analyzeArea").scrollIntoView({ behavior: "smooth", block: "start" });
+      input.focus();
+    });
+
+    exampleButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        input.value = button.dataset.example;
+        setActiveExample(button.dataset.example);
+        feedbackMessage.classList.remove("show");
+      });
+    });
+
+    input.addEventListener("input", () => {
+      setActiveExample(normalizeSentence(input.value));
+    });
+
+    analyzeButton.addEventListener("click", analyzeSentence);
+
+    input.addEventListener("keydown", (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+        analyzeSentence();
+      }
+    });
+
+    feedbackTags.addEventListener("click", (event) => {
+      if (!event.target.classList.contains("feedback-tag")) {
+        return;
+      }
+      document.querySelectorAll(".feedback-tag").forEach((tag) => tag.classList.remove("selected"));
+      event.target.classList.add("selected");
+      feedbackMessage.classList.add("show");
+    });
+  </script>
+</body>
+</html>
