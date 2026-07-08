@@ -5,6 +5,10 @@
 EnglishMate is a single-page web demo for English learners.  
 这是一个面向英语学习者的 AI 英语纠错与表达优化网页 Demo，帮助用户在写英文句子时看懂哪里错、为什么错，以及如何表达得更自然。
 
+## Live Demo
+
+[https://2790414541y-art.github.io/EnglishMate/](https://2790414541y-art.github.io/EnglishMate/)
+
 ## Project Overview
 
 EnglishMate focuses on a common learning problem: many tools can provide a corrected sentence, but they do not clearly explain the reason behind the mistake.
