@@ -1789,9 +1789,28 @@
       return ["127.0.0.1", "localhost"].includes(window.location.hostname);
     }
 
+    function polishDemoSentence(text) {
+      let polished = text.trim();
+      polished = polished.replace(/\bi\b/g, "I");
+      polished = polished.replace(/\bI have ate\b/gi, "I ate");
+      polished = polished.replace(/\bI had ate\b/gi, "I ate");
+      polished = polished.replace(/\ba apple\b/gi, "an apple");
+      polished = polished.replace(/\ba orange\b/gi, "an orange");
+      polished = polished.replace(/\ba English\b/gi, "English");
+      polished = polished.replace(/\bHe go\b/g, "He goes");
+      polished = polished.replace(/\bShe go\b/g, "She goes");
+      polished = polished.replace(/\bIt go\b/g, "It goes");
+      polished = polished.replace(/\bI has\b/g, "I have");
+      polished = polished.replace(/\bHe have\b/g, "He has");
+      polished = polished.replace(/\bShe have\b/g, "She has");
+      polished = polished.replace(/\bmany homework\b/gi, "a lot of homework");
+      if (polished && !/[.!?]$/.test(polished)) polished += ".";
+      return polished;
+    }
+
     function getDemoCorrection(text) {
       const normalized = text.toLowerCase().replace(/[.,!?]/g, "").replace(/\s+/g, " ").trim();
-      if (normalized === "i have ate an apple" || normalized === "i had ate a apple") {
+      if (normalized === "i have ate a apple" || normalized === "i have ate an apple" || normalized === "i had ate a apple") {
         return {
           corrected: "I ate an apple.",
           issue: {
@@ -1855,18 +1874,35 @@
           ]
         };
       }
+      if (/\b(i have ate|i had ate|a apple|many homework|he go|she go|i has|he have|she have)\b/i.test(normalized)) {
+        const corrected = polishDemoSentence(text);
+        return {
+          corrected,
+          issue: {
+            category: "Grammar Pattern",
+            original: text,
+            correction: corrected,
+            explanation: "公开体验版会识别一些高频基础错误，例如动词时态、a/an、主谓一致和不可数名词。接入在线后端后，可以进一步分析任意句子和作文。"
+          },
+          optimizations: [
+            { level: "Basic", text: corrected },
+            { level: "Natural", text: corrected.replace(/^I ate an apple\.$/, "I just had an apple.") },
+            { level: "Spoken", text: corrected.replace(/^I ate an apple\.$/, "I had an apple earlier.") }
+          ]
+        };
+      }
       return {
-        corrected: "Your improved sentence will appear here in the full AI version.",
+        corrected: polishDemoSentence(text),
         issue: {
-          category: "Demo Analysis",
+          category: "Preview Analysis",
           original: truncate(text, 120),
-          correction: "The public demo keeps the same report structure and learning workflow.",
-          explanation: "公开版用于展示产品体验和报告结构。接入后端代理后，这里会根据用户输入生成实时纠错、解释和表达优化。"
+          correction: polishDemoSentence(text),
+          explanation: "这是公开体验版的基础分析结果，适合展示产品流程和报告结构。部署在线 AI 后端后，EnglishMate 可以对任意句子和作文生成实时、个性化分析。"
         },
         optimizations: [
-          { level: "Basic", text: "A clearer corrected version of the sentence." },
-          { level: "Natural", text: "A more fluent and natural version for writing." },
-          { level: "Spoken", text: "A casual version that sounds natural in conversation." }
+          { level: "Basic", text: polishDemoSentence(text) },
+          { level: "Natural", text: "Use clearer word choice and a more natural sentence rhythm." },
+          { level: "Spoken", text: "Keep the meaning simple and conversational." }
         ]
       };
     }
