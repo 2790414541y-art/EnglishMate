@@ -68,16 +68,6 @@
       border-bottom: 1px solid var(--line);
     }
 
-    .silk-canvas {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      width: 100%;
-      height: 100%;
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
     .hero::after {
       position: absolute;
       inset: 0;
@@ -93,7 +83,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 22px 0;
+      padding: 16px 0;
     }
 
     .brand {
@@ -116,42 +106,20 @@
       box-shadow: 0 8px 22px rgba(37, 99, 235, 0.22);
     }
 
-    .nav-note {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
     .hero-inner {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 46px;
-      align-items: center;
-      padding: 66px 0 78px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin: 0 0 16px;
-      padding: 6px 10px;
-      border: 1px solid #cfe0ff;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.72);
-      color: var(--primary-dark);
-      font-size: 13px;
-      font-weight: 700;
+      max-width: 760px;
+      padding: 28px 0 42px;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(52px, 8vw, 88px);
+      font-size: clamp(46px, 7vw, 68px);
       line-height: 1;
       letter-spacing: 0;
     }
 
     .subtitle {
-      margin: 18px 0 10px;
+      margin: 12px 0 8px;
       color: #344054;
       font-size: clamp(18px, 2.4vw, 24px);
       font-weight: 700;
@@ -159,7 +127,7 @@
 
     .description {
       max-width: 640px;
-      margin: 0 0 28px;
+      margin: 0 0 20px;
       color: var(--muted);
       font-size: 18px;
     }
@@ -189,63 +157,6 @@
       cursor: wait;
       opacity: 0.8;
       transform: none;
-    }
-
-    .hero-preview {
-      padding: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.82);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.76);
-      box-shadow: 0 20px 58px rgba(22, 64, 128, 0.14);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-
-    .preview-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .mini-title {
-      margin: 0;
-      font-size: 15px;
-      font-weight: 800;
-    }
-
-    .status-pill {
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: var(--soft-green);
-      color: #047857;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .sentence-box {
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: #fff;
-      color: #344054;
-    }
-
-    .sentence-box + .sentence-box {
-      margin-top: 12px;
-    }
-
-    .wrong {
-      color: #b42318;
-      text-decoration: line-through;
-      text-decoration-thickness: 2px;
-    }
-
-    .right {
-      color: #057a55;
-      font-weight: 800;
     }
 
     section {
@@ -369,27 +280,6 @@
       font-size: 13px;
     }
 
-    .sample-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 18px 0 10px;
-      color: #344054;
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .click-hint {
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: var(--soft-blue);
-      color: var(--primary-dark);
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
     textarea {
       width: 100%;
       min-height: 164px;
@@ -406,32 +296,9 @@
 
     textarea:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
-    }
-
-    .example-row {
-      display: grid;
-      gap: 10px;
-      margin: 0 0 16px;
-    }
-
-    .example-btn {
-      width: 100%;
-      padding: 12px 13px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: #fff;
-      color: #344054;
-      text-align: left;
-      font-weight: 700;
-      transition: border 0.2s ease, background 0.2s ease, transform 0.2s ease;
-    }
-
-    .example-btn:hover,
-    .example-btn.active {
-      border-color: #9bbcff;
-      background: var(--soft-blue);
-      transform: translateY(-1px);
+      outline: 2px solid rgba(37, 99, 235, 0.24);
+      outline-offset: 1px;
+      box-shadow: none;
     }
 
     .analyze-row {
@@ -482,6 +349,16 @@
       font-size: 18px;
     }
 
+    .empty-state.error {
+      border-color: #f5b8b2;
+      background: #fff8f7;
+      color: #912018;
+    }
+
+    .empty-state.error strong {
+      color: #b42318;
+    }
+
     .result-panel {
       display: none;
       padding: 0;
@@ -490,18 +367,6 @@
 
     .result-panel.show {
       display: block;
-      animation: rise 0.28s ease both;
-    }
-
-    @keyframes rise {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     .result-header {
@@ -602,20 +467,6 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-    }
-
-    .sentence-label {
-      margin: 0 0 4px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
-
-    .sentence-value {
-      margin: 0;
-      font-size: 16px;
-      font-weight: 700;
     }
 
     .explain-text {
@@ -783,14 +634,722 @@
       text-align: center;
     }
 
+    .studio-section {
+      min-height: 760px;
+      padding-top: 20px;
+      background: #f4f7fb;
+    }
+
+    .studio-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 38px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 8px 28px rgba(22, 32, 51, 0.05);
+    }
+
+    .studio-tabs,
+    .mode-control {
+      display: inline-flex;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #f5f7fa;
+    }
+
+    .studio-tab,
+    .mode-button {
+      min-height: 36px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 5px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .studio-tab.active,
+    .mode-button.active {
+      background: #fff;
+      color: var(--primary-dark);
+      box-shadow: 0 2px 8px rgba(22, 32, 51, 0.08);
+    }
+
+    .studio-tab span {
+      display: inline-grid;
+      min-width: 22px;
+      height: 22px;
+      margin-left: 6px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--soft-blue);
+      font-size: 12px;
+    }
+
+    .api-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-right: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .api-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #98a2b3;
+      box-shadow: 0 0 0 4px rgba(152, 162, 179, 0.14);
+    }
+
+    .api-dot.online {
+      background: #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.14);
+    }
+
+    .api-dot.offline {
+      background: #ef4444;
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+    }
+
+    .setup-notice {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin: -20px 0 30px;
+      padding: 16px 18px;
+      border: 1px solid #f3d18a;
+      border-radius: var(--radius);
+      background: #fffbeb;
+    }
+
+    .setup-notice[hidden] {
+      display: none;
+    }
+
+    .setup-copy strong,
+    .setup-copy span {
+      display: block;
+    }
+
+    .setup-copy span {
+      margin-top: 2px;
+      color: #7a5d18;
+      font-size: 12px;
+    }
+
+    .key-form {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: min(460px, 100%);
+    }
+
+    .key-form input {
+      min-width: 0;
+      flex: 1;
+      height: 40px;
+      padding: 0 11px;
+      border: 1px solid #d9b65f;
+      border-radius: 6px;
+      outline: none;
+      background: #fff;
+      font: inherit;
+    }
+
+    .key-form button {
+      flex: 0 0 auto;
+      height: 40px;
+      padding: 0 13px;
+      border: 0;
+      border-radius: 6px;
+      background: #92400e;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .studio-view {
+      display: none;
+    }
+
+    .studio-view.active {
+      display: block;
+    }
+
+    .coach-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+    }
+
+    .coach-heading h2 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .coach-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .text-button {
+      flex: 0 0 auto;
+      padding: 8px 0;
+      border: 0;
+      background: transparent;
+      color: var(--primary-dark);
+      font-weight: 750;
+    }
+
+    .coach-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.75fr) minmax(270px, 0.75fr);
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .editor-card,
+    .learning-overview,
+    .profile-section,
+    .history-section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--card-shadow);
+    }
+
+    .editor-card {
+      padding: 24px;
+    }
+
+    .editor-head,
+    .editor-head > div:first-child,
+    .overview-head,
+    .block-title-row,
+    .profile-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .editor-head {
+      margin-bottom: 18px;
+    }
+
+    .editor-head h3,
+    .profile-title h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .step-label {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .essay-options {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 190px;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .essay-options[hidden] {
+      display: none;
+    }
+
+    .essay-options label {
+      color: #344054;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .essay-options input,
+    .essay-options select {
+      width: 100%;
+      height: 42px;
+      margin-top: 5px;
+      padding: 0 12px;
+      border: 1px solid #cfd8e3;
+      border-radius: 7px;
+      outline: none;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    .essay-options input:focus,
+    .essay-options select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .editor-card textarea {
+      min-height: 230px;
+    }
+
+    .editor-card.essay-mode textarea {
+      min-height: 360px;
+    }
+
+    .editor-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .usage-badge {
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-weight: 800;
+    }
+
+    .usage-badge.quick {
+      background: var(--soft-green);
+      color: #047857;
+    }
+
+    .usage-badge.standard {
+      background: var(--soft-blue);
+      color: var(--primary-dark);
+    }
+
+    .usage-badge.deep {
+      background: var(--soft-orange);
+      color: #b54708;
+    }
+
+    .editor-card .analyze-row {
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .editor-card .analyze-row .helper {
+      max-width: 420px;
+    }
+
+    .learning-overview {
+      padding: 22px;
+      background:
+        linear-gradient(155deg, rgba(37, 99, 235, 0.04), rgba(8, 145, 178, 0.06)),
+        #fff;
+    }
+
+    .overview-head {
+      align-items: flex-start;
+    }
+
+    .overview-head strong {
+      font-size: 16px;
+    }
+
+    .score-orbit {
+      display: grid;
+      width: 150px;
+      height: 150px;
+      margin: 26px auto;
+      place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(var(--primary) var(--score-angle, 0deg), #e6edf6 0);
+      box-shadow: inset 0 0 0 12px rgba(255, 255, 255, 0.9);
+    }
+
+    .score-orbit div {
+      display: grid;
+      width: 102px;
+      height: 102px;
+      place-items: center;
+      align-content: center;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .score-orbit strong {
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .score-orbit span,
+    .overview-stats span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .overview-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 18px;
+      border-block: 1px solid var(--line);
+    }
+
+    .overview-stats div {
+      display: grid;
+      gap: 2px;
+      padding: 14px 8px;
+      text-align: center;
+    }
+
+    .overview-stats div + div {
+      border-left: 1px solid var(--line);
+    }
+
+    .overview-stats strong {
+      font-size: 22px;
+    }
+
+    .focus-panel {
+      padding: 15px;
+      border-left: 3px solid var(--accent);
+      background: rgba(8, 145, 178, 0.06);
+    }
+
+    .focus-panel span {
+      display: block;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .focus-panel strong {
+      display: block;
+      margin: 4px 0;
+    }
+
+    .focus-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .report-empty,
+    .writing-report {
+      margin-top: 20px;
+    }
+
+    .writing-report .result-header {
+      align-items: center;
+    }
+
+    .report-score {
+      display: flex;
+      align-items: baseline;
+      min-width: 112px;
+      color: var(--primary-dark);
+    }
+
+    .report-score strong {
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .report-score span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .writing-report .report-summary {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .score-dimension span {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .score-track {
+      height: 5px;
+      margin-top: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e7edf5;
+    }
+
+    .score-track i {
+      display: block;
+      width: var(--dimension-score);
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .long-form-text {
+      margin: 0;
+      color: #344054;
+      white-space: pre-wrap;
+    }
+
+    .corrected-block {
+      border-left: 3px solid #10b981;
+      background: #f5fcf9;
+    }
+
+    .copy-button,
+    .danger-button {
+      min-height: 34px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .danger-button {
+      color: #b42318;
+    }
+
+    .issue-total {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .issue-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .issue-item {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 18px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .issue-category {
+      align-self: start;
+      width: fit-content;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: var(--soft-orange);
+      color: #b54708;
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .issue-change span,
+    .issue-explanation span {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .issue-change p,
+    .issue-explanation p {
+      margin: 0;
+      color: #344054;
+    }
+
+    .issue-change .wrong-text {
+      color: #b42318;
+      text-decoration: line-through;
+    }
+
+    .issue-change .correct-text {
+      margin-top: 5px;
+      color: #047857;
+      font-weight: 750;
+    }
+
+    .no-issues {
+      padding: 18px 0 4px;
+      color: #047857;
+      font-weight: 750;
+    }
+
+    .practice-columns,
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .next-step-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding-left: 22px;
+      color: #344054;
+    }
+
+    .profile-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-bottom: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--card-shadow);
+    }
+
+    .profile-metrics div {
+      display: grid;
+      gap: 4px;
+      padding: 22px;
+    }
+
+    .profile-metrics div + div {
+      border-left: 1px solid var(--line);
+    }
+
+    .profile-metrics span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .profile-metrics strong {
+      font-size: 24px;
+    }
+
+    .profile-section,
+    .history-section {
+      padding: 22px;
+    }
+
+    .profile-grid {
+      margin-bottom: 18px;
+    }
+
+    .portrait-section {
+      background:
+        linear-gradient(135deg, rgba(37, 99, 235, 0.07), rgba(8, 145, 178, 0.08)),
+        #fff;
+    }
+
+    .portrait-section h3 {
+      margin: 18px 0 8px;
+      font-size: 23px;
+      line-height: 1.25;
+    }
+
+    .portrait-section p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .weakness-bars {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .weakness-row {
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr) 32px;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .weakness-track {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e7edf5;
+    }
+
+    .weakness-track i {
+      display: block;
+      width: var(--bar-width);
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .history-list {
+      display: grid;
+      margin-top: 18px;
+    }
+
+    .history-item {
+      display: grid;
+      grid-template-columns: 110px minmax(0, 1fr) auto 54px;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 14px 4px;
+      border: 0;
+      border-top: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+    }
+
+    .history-item:hover {
+      background: #f8faff;
+    }
+
+    .history-date,
+    .history-meta {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .history-copy {
+      min-width: 0;
+    }
+
+    .history-copy strong,
+    .history-copy span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .history-copy span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .history-score {
+      color: var(--primary-dark);
+      font-size: 20px;
+    }
+
+    .history-empty {
+      padding: 34px 0 18px;
+      color: var(--muted);
+      text-align: center;
+    }
+
     @media (max-width: 900px) {
-      .hero-inner,
       .workspace {
         grid-template-columns: 1fr;
       }
 
       .hero-inner {
-        padding-top: 36px;
+        padding: 24px 0 36px;
       }
 
       .input-panel {
@@ -819,6 +1378,33 @@
       .note-card.wide {
         grid-column: span 1;
       }
+
+      .coach-grid,
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .writing-report .report-summary,
+      .profile-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .profile-metrics div:nth-child(3) {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .profile-metrics div:nth-child(4) {
+        border-top: 1px solid var(--line);
+      }
+
+      .issue-item {
+        grid-template-columns: 130px minmax(0, 1fr);
+      }
+
+      .issue-explanation {
+        grid-column: 2;
+      }
     }
 
     @media (max-width: 640px) {
@@ -832,10 +1418,6 @@
         gap: 10px;
       }
 
-      .nav-note {
-        font-size: 13px;
-      }
-
       section {
         padding: 46px 0;
       }
@@ -847,7 +1429,6 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-preview,
       .input-panel,
       .output-panel {
         padding: 18px;
@@ -870,12 +1451,68 @@
         width: 100%;
       }
 
-      .silk-canvas {
-        opacity: 0.7;
-      }
-
       .hero::after {
         background: rgba(255, 255, 255, 0.64);
+      }
+
+      .studio-toolbar,
+      .coach-heading,
+      .editor-head,
+      .setup-notice {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .key-form {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .studio-tabs,
+      .mode-control {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+
+      .api-status {
+        padding: 4px 6px;
+      }
+
+      .essay-options,
+      .practice-columns,
+      .writing-report .report-summary,
+      .profile-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-metrics div + div,
+      .profile-metrics div:nth-child(3),
+      .profile-metrics div:nth-child(4) {
+        border-top: 1px solid var(--line);
+        border-left: 0;
+      }
+
+      .issue-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .issue-explanation {
+        grid-column: auto;
+      }
+
+      .history-item {
+        grid-template-columns: 1fr auto;
+      }
+
+      .history-date,
+      .history-meta {
+        display: none;
+      }
+
+      .weakness-row {
+        grid-template-columns: 96px minmax(0, 1fr) 28px;
       }
     }
 
@@ -889,501 +1526,213 @@
 <body>
   <div class="page">
     <header class="hero">
-      <canvas class="silk-canvas" id="silkCanvas" aria-hidden="true"></canvas>
       <div class="container">
         <nav class="nav" aria-label="Main navigation">
           <div class="brand">
             <span class="brand-mark">E</span>
             <span>EnglishMate</span>
           </div>
-          <span class="nav-note">AI English correction prototype</span>
         </nav>
 
         <div class="hero-inner">
           <div>
-            <p class="eyebrow">AI Product Internship Portfolio · MVP Prototype</p>
             <h1>EnglishMate</h1>
-            <p class="subtitle">AI-powered English correction and expression assistant</p>
-            <p class="description">输入一句英文，快速看懂错误原因，并学习更自然的表达。</p>
+            <p class="subtitle">Your AI English writing coach</p>
+            <p class="description">从单句纠错到作文诊断，看懂问题，积累表达，持续提升英文写作。</p>
             <button class="primary-button" id="startButton" type="button">Start Analyzing</button>
           </div>
 
-          <aside class="hero-preview" aria-label="EnglishMate preview">
-            <div class="preview-top">
-              <p class="mini-title">AI analysis preview</p>
-              <span class="status-pill">Mock Report</span>
-            </div>
-            <div class="sentence-box">
-              <p class="sentence-label">Original</p>
-              <p class="sentence-value"><span class="wrong">I am very like</span> this movie.</p>
-            </div>
-            <div class="sentence-box">
-              <p class="sentence-label">Corrected</p>
-              <p class="sentence-value"><span class="right">I really like</span> this movie.</p>
-            </div>
-          </aside>
         </div>
       </div>
     </header>
 
-    <main>
-      <section>
+    <main id="analyzeArea">
+      <section class="studio-section">
         <div class="container">
-          <div class="section-heading">
-            <h2>Core Capabilities</h2>
-            <p>From correction to explanation, the Demo shows a complete learning-oriented AI product loop.</p>
+          <div class="studio-toolbar">
+            <div class="studio-tabs" role="tablist" aria-label="EnglishMate views">
+              <button class="studio-tab active" id="coachTab" type="button" data-view="coach">Writing Coach</button>
+              <button class="studio-tab" id="profileTab" type="button" data-view="profile">
+                Learning Profile <span id="historyBadge">0</span>
+              </button>
+            </div>
+            <div class="api-status"><span class="api-dot" id="apiDot"></span><span id="apiStatus">Checking AI service</span></div>
           </div>
 
-          <div class="feature-grid">
-            <article class="feature-card">
-              <div class="feature-icon">G</div>
-              <h3>Grammar Correction</h3>
-              <p>识别基础语法错误</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">中</div>
-              <h3>Chinese Explanation</h3>
-              <p>用中文解释错误原因</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">O</div>
-              <h3>Expression Optimization</h3>
-              <p>提供更自然的英文表达</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">Ex</div>
-              <h3>Example Generation</h3>
-              <p>生成可迁移学习的例句</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="experience" id="analyzeArea">
-        <div class="container">
-          <div class="section-heading">
-            <h2>Core Experience</h2>
-            <p>Click a sample sentence or type your own input to generate a simulated AI analysis report.</p>
+          <div class="setup-notice" id="setupNotice" hidden>
+            <div class="setup-copy">
+              <strong>启用真实 DeepSeek 分析</strong>
+              <span>Key 仅保存在当前本地服务的内存中，刷新页面不会泄露，关闭服务后自动清除。</span>
+            </div>
+            <div class="key-form">
+              <input id="apiKeyInput" type="password" autocomplete="off" spellcheck="false" placeholder="粘贴 DeepSeek API Key">
+              <button id="saveKeyButton" type="button">保存并启用</button>
+            </div>
           </div>
 
-          <div class="workspace">
-            <div class="input-panel">
-              <div class="panel-label">
-                <h3>1. English Input</h3>
-                <span class="helper">Single sentence MVP</span>
+          <div class="studio-view active" id="coachView">
+            <div class="coach-heading">
+              <div>
+                <span class="section-kicker">WRITING STUDIO</span>
+                <h2>Turn every draft into progress.</h2>
+                <p>从一句表达，到一篇作文，获得纠错、评分、错误拆解和个性化提升建议。</p>
               </div>
-              <textarea id="sentenceInput" aria-label="English sentence input" placeholder="Type an English sentence here...">I am very like this movie.</textarea>
+              <button class="text-button" id="openProfileButton" type="button">View learning profile →</button>
+            </div>
 
-              <div class="sample-title">
-                <span>Try sample sentences</span>
-                <span class="click-hint">Click to experience</span>
-              </div>
-              <div class="example-row" aria-label="Example sentences">
-                <button class="example-btn active" type="button" data-example="I am very like this movie.">I am very like this movie.</button>
-                <button class="example-btn" type="button" data-example="He go to school every day.">He go to school every day.</button>
-                <button class="example-btn" type="button" data-example="I have many homework today.">I have many homework today.</button>
-              </div>
+            <div class="coach-grid">
+              <section class="editor-card">
+                <div class="editor-head">
+                  <div><span class="step-label">01</span><h3>English Input</h3></div>
+                  <div class="mode-control" aria-label="Writing mode">
+                    <button class="mode-button active" type="button" data-mode="sentence">Sentence</button>
+                    <button class="mode-button" type="button" data-mode="essay">Essay</button>
+                  </div>
+                </div>
 
-              <div class="analyze-row" id="analyzeRow">
-                <button class="primary-button" id="analyzeButton" type="button">
-                  <span id="analyzeText">Analyze</span>
-                  <span class="loading-dot" aria-hidden="true"></span>
-                </button>
-                <span class="helper">Mock data only · No API request</span>
+                <div class="essay-options" id="essayOptions" hidden>
+                  <label>Essay title<input id="essayTitle" type="text" maxlength="160" placeholder="Optional title"></label>
+                  <label>Writing goal
+                    <select id="writingGoal">
+                      <option value="General writing">General Writing</option>
+                      <option value="IELTS">IELTS</option>
+                      <option value="CET-4 / CET-6">CET-4 / CET-6</option>
+                      <option value="Academic writing">Academic Writing</option>
+                      <option value="Daily writing">Daily Writing</option>
+                    </select>
+                  </label>
+                </div>
+
+                <textarea id="sentenceInput" maxlength="5000" aria-label="English writing input" placeholder="Write an English sentence here..."></textarea>
+                <div class="editor-meta">
+                  <span id="charCount">0 / 5000</span>
+                  <span class="usage-badge quick" id="usageBadge">Quick · low usage</span>
+                </div>
+
+                <div class="analyze-row" id="analyzeRow">
+                  <span class="helper" id="usageHint">Sentence analysis uses a concise response and low reasoning.</span>
+                  <button class="primary-button" id="analyzeButton" type="button">
+                    <span id="analyzeText">Analyze writing</span>
+                    <span class="loading-dot" aria-hidden="true"></span>
+                  </button>
+                </div>
+              </section>
+
+              <aside class="learning-overview">
+                <div class="overview-head"><span class="section-kicker">YOUR PROGRESS</span><strong>学习概览</strong></div>
+                <div class="score-orbit"><div><strong id="averageScore">—</strong><span>平均分</span></div></div>
+                <div class="overview-stats">
+                  <div><strong id="practiceCount">0</strong><span>累计练习</span></div>
+                  <div><strong id="issueCount">0</strong><span>发现问题</span></div>
+                </div>
+                <div class="focus-panel">
+                  <span>近期重点</span>
+                  <strong id="topWeakness">完成一次分析后生成</strong>
+                  <p id="focusHint">系统会从本地历史记录中识别你的高频错误。</p>
+                </div>
+              </aside>
+            </div>
+
+            <div class="empty-state report-empty" id="emptyState">
+              <div>
+                <strong id="emptyTitle">Your writing report will appear here.</strong>
+                <span id="emptyMessage">The report includes scoring, correction, issue analysis, expression upgrades, and next steps.</span>
               </div>
             </div>
 
-            <div class="output-panel">
-              <div class="empty-state" id="emptyState">
-                <div>
-                  <strong>AI analysis report will appear here.</strong>
-                  <span>The report includes correction, Chinese explanation, better expressions, examples, and feedback collection.</span>
-                </div>
+            <article class="result-panel writing-report" id="resultPanel" aria-live="polite">
+              <div class="result-header">
+                <div><span class="section-kicker">PERSONALIZED REPORT</span><h3>AI Writing Analysis</h3><p id="resultNote"></p></div>
+                <div class="report-score"><strong id="overallScore">—</strong><span>/ 100</span></div>
               </div>
+              <div class="report-summary" id="scoreGrid" aria-label="Writing scores"></div>
 
-              <article class="result-panel" id="resultPanel" aria-live="polite">
-                <div class="result-header">
-                  <div>
-                    <h3>AI Analysis Report</h3>
-                    <p id="resultNote">Mock result matched from the sample library.</p>
-                  </div>
-                  <div class="confidence">Learning Fit</div>
+              <div class="result-body">
+                <section class="analysis-block report-text-block">
+                  <h4 id="originalHeading">Original Writing</h4>
+                  <p class="long-form-text" id="originalSentence"></p>
+                </section>
+                <section class="analysis-block report-text-block corrected-block">
+                  <div class="block-title-row"><h4 id="correctedHeading">Corrected Writing</h4><button class="copy-button" type="button" id="copyCorrection">Copy</button></div>
+                  <p class="long-form-text" id="correctedSentence"></p>
+                </section>
+                <section class="analysis-block">
+                  <h4>Overall Feedback</h4>
+                  <p class="explain-text" id="explanationText"></p>
+                </section>
+                <section class="analysis-block">
+                  <div class="block-title-row"><h4>Issue Breakdown</h4><span class="issue-total" id="issueTotal">0 issues</span></div>
+                  <div class="issue-list" id="issueList"></div>
+                </section>
+                <div class="practice-columns">
+                  <section class="analysis-block"><h4>Better Expressions</h4><ul class="optimization-list" id="optimizationList"></ul></section>
+                  <section class="analysis-block"><h4>Transferable Examples</h4><ul class="example-list" id="exampleList"></ul></section>
                 </div>
-
-                <div class="report-summary" aria-label="Analysis summary">
-                  <div class="summary-item">
-                    <span>Mode</span>
-                    <strong>Mock AI Analysis</strong>
+                <section class="analysis-block"><h4>Your Next Steps</h4><ol class="next-step-list" id="nextStepList"></ol></section>
+                <section class="analysis-block" aria-label="Feedback">
+                  <h4>Feedback</h4>
+                  <div class="tag-row" id="feedbackTags">
+                    <button class="feedback-tag" type="button">解释太复杂</button>
+                    <button class="feedback-tag" type="button">修改不自然</button>
+                    <button class="feedback-tag" type="button">没看懂原因</button>
+                    <button class="feedback-tag" type="button">建议不够具体</button>
                   </div>
-                  <div class="summary-item">
-                    <span>Focus</span>
-                    <strong>Grammar + Naturalness</strong>
-                  </div>
-                  <div class="summary-item">
-                    <span>Output</span>
-                    <strong>Correction + Practice</strong>
-                  </div>
-                </div>
+                  <div class="feedback-message" id="feedbackMessage">感谢反馈，该问题已加入后续优化清单。</div>
+                </section>
+              </div>
+            </article>
+          </div>
 
-                <div class="result-body">
-                  <section class="analysis-block" aria-label="Original sentence">
-                    <h4>Original Sentence</h4>
-                    <p class="sentence-value" id="originalSentence"></p>
-                  </section>
-
-                  <section class="analysis-block" aria-label="Corrected sentence">
-                    <h4>Corrected Sentence</h4>
-                    <p class="sentence-value right" id="correctedSentence"></p>
-                  </section>
-
-                  <section class="analysis-block" aria-label="Chinese explanation">
-                    <h4>Chinese Explanation</h4>
-                    <p class="explain-text" id="explanationText"></p>
-                  </section>
-
-                  <section class="analysis-block" aria-label="Better expressions">
-                    <h4>Better Expressions</h4>
-                    <ul class="optimization-list" id="optimizationList"></ul>
-                  </section>
-
-                  <section class="analysis-block" aria-label="Example sentences">
-                    <h4>Example Sentences</h4>
-                    <ul class="example-list" id="exampleList"></ul>
-                  </section>
-
-                  <section class="analysis-block" aria-label="Feedback">
-                    <h4>Feedback</h4>
-                    <div class="tag-row" id="feedbackTags">
-                      <button class="feedback-tag" type="button">解释太复杂</button>
-                      <button class="feedback-tag" type="button">修改不自然</button>
-                      <button class="feedback-tag" type="button">没看懂原因</button>
-                      <button class="feedback-tag" type="button">例句不够实用</button>
-                    </div>
-                    <div class="feedback-message" id="feedbackMessage">感谢反馈，该问题已加入后续优化清单。</div>
-                  </section>
-                </div>
-              </article>
+          <div class="studio-view" id="profileView">
+            <div class="coach-heading">
+              <div><span class="section-kicker">LEARNING PROFILE</span><h2>See the pattern behind your mistakes.</h2><p>历史记录只保存在当前浏览器，用于生成你的写作学习画像。</p></div>
+              <button class="text-button" id="backToCoachButton" type="button">← Back to writing coach</button>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section>
-        <div class="container">
-          <div class="section-heading">
-            <h2>Product Flow</h2>
-            <p>The first version focuses on a clear and explainable learning path.</p>
-          </div>
+            <div class="profile-metrics">
+              <div><span>Practices</span><strong id="profilePractices">0</strong></div>
+              <div><span>Average Score</span><strong id="profileAverage">—</strong></div>
+              <div><span>Total Issues</span><strong id="profileIssues">0</strong></div>
+              <div><span>Top Focus</span><strong id="profileFocus">—</strong></div>
+            </div>
 
-          <div class="flow" aria-label="Product flow steps">
-            <div class="step"><span class="step-number">1</span><span>Input</span></div>
-            <div class="step"><span class="step-number">2</span><span>Analyze</span></div>
-            <div class="step"><span class="step-number">3</span><span>Correct</span></div>
-            <div class="step"><span class="step-number">4</span><span>Explain</span></div>
-            <div class="step"><span class="step-number">5</span><span>Optimize</span></div>
-            <div class="step"><span class="step-number">6</span><span>Feedback</span></div>
-          </div>
-        </div>
-      </section>
+            <div class="profile-grid">
+              <section class="profile-section">
+                <div class="profile-title"><div><span class="section-kicker">ERROR SHARE</span><h3>高频错误分布</h3></div></div>
+                <div class="weakness-bars" id="weaknessBars"></div>
+              </section>
+              <section class="profile-section portrait-section">
+                <span class="section-kicker">PERSONAL ADVICE</span>
+                <h3 id="portraitTitle">完成第一次分析，建立你的学习画像。</h3>
+                <p id="portraitSummary">EnglishMate 会根据历史错误频率和评分，为你总结下一阶段的练习重点。</p>
+              </section>
+            </div>
 
-      <section class="portfolio">
-        <div class="container">
-          <div class="section-heading">
-            <h2>Portfolio Notes</h2>
-            <p>Product thinking, user value, MVP boundary, and next iteration direction for portfolio review.</p>
-          </div>
-
-          <div class="notes-grid">
-            <article class="note-card">
-              <h3>Product Goal</h3>
-              <p>帮助英语学习者理解句子错误，并学习更自然的表达。</p>
-            </article>
-            <article class="note-card">
-              <h3>User Pain Point</h3>
-              <p>普通翻译工具通常只给结果，不解释原因。</p>
-            </article>
-            <article class="note-card">
-              <h3>MVP Scope</h3>
-              <p>第一版只做单页原型、mock 数据和基础反馈机制。</p>
-            </article>
-            <article class="note-card">
-              <h3>Skills Demonstrated</h3>
-              <p>英语学习场景理解、AI 产品功能链路设计、问题反馈机制设计、网页原型搭建能力。</p>
-            </article>
-            <article class="note-card wide">
-              <h3>Future Iteration</h3>
-              <p>后续可以接入真实 AI 接口，支持错误类型分类、历史记录、个性化例句、学习进度追踪和更细粒度的反馈闭环。</p>
-            </article>
+            <section class="history-section">
+              <div class="profile-title"><div><span class="section-kicker">RECENT WRITING</span><h3>历史记录</h3></div><button class="danger-button" id="clearHistory" type="button">Clear history</button></div>
+              <div class="history-list" id="historyList"></div>
+            </section>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <div class="container">EnglishMate Demo · Built with HTML, CSS, and JavaScript</div>
+      <div class="container">EnglishMate—your AI English teacher</div>
     </footer>
   </div>
 
   <script>
-    function initSilkBackground() {
-      const canvas = document.getElementById("silkCanvas");
-      const hero = canvas.closest(".hero");
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-      const gl = canvas.getContext("webgl", {
-        alpha: false,
-        antialias: false,
-        powerPreference: "high-performance"
-      });
-
-      if (!gl) {
-        canvas.style.display = "none";
-        return;
-      }
-
-      const vertexSource = `
-        attribute vec2 aPosition;
-        varying vec2 vUv;
-
-        void main() {
-          vUv = aPosition * 0.5 + 0.5;
-          gl_Position = vec4(aPosition, 0.0, 1.0);
-        }
-      `;
-
-      const fragmentSource = `
-        precision highp float;
-
-        varying vec2 vUv;
-        uniform float uTime;
-        uniform vec3 uColor;
-        uniform float uSpeed;
-        uniform float uScale;
-        uniform float uRotation;
-        uniform float uNoiseIntensity;
-        uniform vec2 uResolution;
-
-        const float e = 2.71828182845904523536;
-
-        float noise(vec2 texCoord) {
-          vec2 r = e * sin(e * texCoord);
-          return fract(r.x * r.y * (1.0 + texCoord.x));
-        }
-
-        vec2 rotateUvs(vec2 uv, float angle) {
-          float c = cos(angle);
-          float s = sin(angle);
-          return mat2(c, -s, s, c) * uv;
-        }
-
-        void main() {
-          float aspect = uResolution.x / max(uResolution.y, 1.0);
-          vec2 centeredUv = vUv - 0.5;
-          centeredUv.x *= mix(1.0, aspect, 0.2);
-          vec2 uv = rotateUvs(centeredUv * uScale, uRotation) + 0.5;
-          vec2 tex = uv * uScale;
-          float tOffset = uSpeed * uTime;
-
-          tex.y += 0.03 * sin(8.0 * tex.x - tOffset);
-
-          float pattern = 0.6 +
-            0.4 * sin(5.0 * (tex.x + tex.y +
-              cos(3.0 * tex.x + 5.0 * tex.y) +
-              0.02 * tOffset) +
-              sin(20.0 * (tex.x + tex.y - 0.1 * tOffset)));
-
-          float wave = smoothstep(0.08, 1.0, pattern);
-          float colorShift = 0.5 + 0.5 * sin(4.0 * (tex.x - tex.y) + tOffset * 0.08);
-          vec3 paper = vec3(0.95, 0.98, 1.0);
-          vec3 cyan = vec3(0.03, 0.57, 0.70);
-          vec3 silk = mix(uColor, cyan, colorShift * 0.28);
-          vec3 color = mix(paper, silk, wave * 0.5);
-
-          float sheen = pow(max(0.0, sin(10.0 * (tex.x + tex.y) - tOffset * 0.2)), 12.0);
-          color += sheen * 0.08;
-          color -= noise(gl_FragCoord.xy) * 0.018 * uNoiseIntensity;
-
-          gl_FragColor = vec4(color, 1.0);
-        }
-      `;
-
-      function createShader(type, source) {
-        const shader = gl.createShader(type);
-        gl.shaderSource(shader, source);
-        gl.compileShader(shader);
-        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-          throw new Error(gl.getShaderInfoLog(shader));
-        }
-        return shader;
-      }
-
-      try {
-        const program = gl.createProgram();
-        gl.attachShader(program, createShader(gl.VERTEX_SHADER, vertexSource));
-        gl.attachShader(program, createShader(gl.FRAGMENT_SHADER, fragmentSource));
-        gl.linkProgram(program);
-
-        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-          throw new Error(gl.getProgramInfoLog(program));
-        }
-
-        gl.useProgram(program);
-
-        const positionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-        gl.bufferData(
-          gl.ARRAY_BUFFER,
-          new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
-          gl.STATIC_DRAW
-        );
-
-        const positionLocation = gl.getAttribLocation(program, "aPosition");
-        gl.enableVertexAttribArray(positionLocation);
-        gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
-
-        const uniforms = {
-          time: gl.getUniformLocation(program, "uTime"),
-          color: gl.getUniformLocation(program, "uColor"),
-          speed: gl.getUniformLocation(program, "uSpeed"),
-          scale: gl.getUniformLocation(program, "uScale"),
-          rotation: gl.getUniformLocation(program, "uRotation"),
-          noise: gl.getUniformLocation(program, "uNoiseIntensity"),
-          resolution: gl.getUniformLocation(program, "uResolution")
-        };
-
-        gl.uniform3f(uniforms.color, 0.145, 0.388, 0.922);
-        gl.uniform1f(uniforms.speed, 2.5);
-        gl.uniform1f(uniforms.scale, 1.2);
-        gl.uniform1f(uniforms.rotation, 0.15);
-        gl.uniform1f(uniforms.noise, 0.7);
-
-        let isVisible = true;
-        let animationFrame = 0;
-        const startTime = performance.now();
-
-        function resizeCanvas() {
-          const pixelRatio = window.innerWidth <= 640
-            ? 1
-            : Math.min(window.devicePixelRatio || 1, 1.5);
-          const width = Math.max(1, Math.round(canvas.clientWidth * pixelRatio));
-          const height = Math.max(1, Math.round(canvas.clientHeight * pixelRatio));
-
-          if (canvas.width !== width || canvas.height !== height) {
-            canvas.width = width;
-            canvas.height = height;
-            gl.viewport(0, 0, width, height);
-          }
-
-          gl.uniform2f(uniforms.resolution, width, height);
-        }
-
-        function render(now) {
-          animationFrame = 0;
-          resizeCanvas();
-          gl.uniform1f(uniforms.time, (now - startTime) * 0.0001);
-          gl.drawArrays(gl.TRIANGLES, 0, 6);
-
-          if (isVisible && !document.hidden && !reducedMotion.matches) {
-            animationFrame = window.requestAnimationFrame(render);
-          }
-        }
-
-        function requestRender() {
-          if (!animationFrame && isVisible && !document.hidden) {
-            animationFrame = window.requestAnimationFrame(render);
-          }
-        }
-
-        const observer = new IntersectionObserver(([entry]) => {
-          isVisible = entry.isIntersecting;
-          if (isVisible) {
-            requestRender();
-          } else if (animationFrame) {
-            window.cancelAnimationFrame(animationFrame);
-            animationFrame = 0;
-          }
-        });
-
-        observer.observe(hero);
-        window.addEventListener("resize", requestRender, { passive: true });
-        document.addEventListener("visibilitychange", requestRender);
-        reducedMotion.addEventListener?.("change", requestRender);
-        requestRender();
-      } catch (error) {
-        console.warn("Silk background could not be initialized.", error);
-        canvas.style.display = "none";
-      }
-    }
-
-    initSilkBackground();
-
-    const mockResults = {
-      "I am very like this movie.": {
-        corrected: "I really like this movie.",
-        explanation: "like 是实义动词，前面不需要 am；very 通常修饰形容词或副词，不能直接修饰 like。",
-        optimizations: [
-          ["Basic", "I really like this movie."],
-          ["Natural", "I really enjoyed this movie."],
-          ["Spoken", "This movie was really good."]
-        ],
-        examples: [
-          "I really like this song.",
-          "She really likes learning English.",
-          "We really enjoyed the trip."
-        ]
-      },
-      "He go to school every day.": {
-        corrected: "He goes to school every day.",
-        explanation: "主语 He 是第三人称单数，一般现在时中动词 go 需要变成 goes。",
-        optimizations: [
-          ["Basic", "He goes to school every day."],
-          ["Natural", "He attends school every day."],
-          ["Spoken", "He goes to school every day."]
-        ],
-        examples: [
-          "She goes to work every morning.",
-          "My brother plays basketball after school.",
-          "He studies English every night."
-        ]
-      },
-      "I have many homework today.": {
-        corrected: "I have a lot of homework today.",
-        explanation: "homework 是不可数名词，不能直接用 many 修饰，应该用 a lot of 或 much。",
-        optimizations: [
-          ["Basic", "I have a lot of homework today."],
-          ["Natural", "I have quite a lot of homework to do today."],
-          ["Spoken", "I’ve got tons of homework today."]
-        ],
-        examples: [
-          "I have a lot of work to do.",
-          "She has much more homework this week.",
-          "We have plenty of time."
-        ]
-      }
-    };
-
-    const genericResult = {
-      corrected: "This demo can display a simulated correction result.",
-      explanation: "当前 Demo 使用模拟数据，后续可以接入真实 AI 接口，根据用户输入生成更准确的纠错、中文解释、表达优化和例句。",
-      optimizations: [
-        ["Basic", "This sentence can be improved with clearer grammar."],
-        ["Natural", "A future AI version could make the sentence sound more natural."],
-        ["Spoken", "The tool can also suggest a more casual spoken version."]
-      ],
-      examples: [
-        "I want to make my English sentence clearer.",
-        "This tool helps learners understand their mistakes.",
-        "Good examples make grammar easier to remember."
-      ],
-      isGeneric: true
-    };
-
+    const STORAGE_KEY = "englishmate-writing-history-v2";
+    const MAX_HISTORY = 50;
     const startButton = document.getElementById("startButton");
     const input = document.getElementById("sentenceInput");
-    const exampleButtons = document.querySelectorAll(".example-btn");
     const analyzeButton = document.getElementById("analyzeButton");
     const analyzeText = document.getElementById("analyzeText");
     const analyzeRow = document.getElementById("analyzeRow");
     const emptyState = document.getElementById("emptyState");
+    const emptyTitle = document.getElementById("emptyTitle");
+    const emptyMessage = document.getElementById("emptyMessage");
     const resultPanel = document.getElementById("resultPanel");
     const resultNote = document.getElementById("resultNote");
     const originalSentence = document.getElementById("originalSentence");
@@ -1391,62 +1740,460 @@
     const explanationText = document.getElementById("explanationText");
     const optimizationList = document.getElementById("optimizationList");
     const exampleList = document.getElementById("exampleList");
+    const nextStepList = document.getElementById("nextStepList");
+    const issueList = document.getElementById("issueList");
     const feedbackTags = document.getElementById("feedbackTags");
     const feedbackMessage = document.getElementById("feedbackMessage");
+    const state = {
+      mode: "sentence",
+      history: loadHistory(),
+      latest: null,
+      apiReady: false,
+      staticDemo: false
+    };
 
-    function normalizeSentence(value) {
-      return value.trim().replace(/\s+/g, " ");
+    function loadHistory() {
+      try {
+        const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        return Array.isArray(value) ? value : [];
+      } catch {
+        return [];
+      }
     }
 
-    function setActiveExample(sentence) {
-      exampleButtons.forEach((button) => {
-        button.classList.toggle("active", button.dataset.example === sentence);
+    function saveHistory() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.history.slice(0, MAX_HISTORY)));
+    }
+
+    function formatDate(value) {
+      const date = new Date(value);
+      return new Intl.DateTimeFormat("zh-CN", {
+        month: "numeric",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      }).format(date);
+    }
+
+    function truncate(value, limit = 72) {
+      const text = String(value || "").replace(/\s+/g, " ").trim();
+      return text.length > limit ? text.slice(0, limit) + "…" : text;
+    }
+
+    function isLocalServiceHost() {
+      return ["127.0.0.1", "localhost"].includes(window.location.hostname);
+    }
+
+    function createStaticDemoResult(text, mode) {
+      const isEssay = mode === "essay";
+      return {
+        corrected: isEssay
+          ? "This public portfolio version shows a sample writing report. Run the local DeepSeek service to receive a full essay rewrite."
+          : "This public portfolio version shows a sample correction. Run the local DeepSeek service to analyze your exact sentence.",
+        overallFeedback: isEssay
+          ? "这是 GitHub Pages 静态展示版，用于展示产品流程、报告结构和学习画像。真实作文诊断需要在本地启动 server.js 并启用 DeepSeek API。"
+          : "这是 GitHub Pages 静态展示版，用于展示产品流程。真实句子纠错需要在本地启动 server.js 并启用 DeepSeek API。",
+        score: isEssay ? 78 : 82,
+        dimensions: [
+          { name: "Grammar", score: isEssay ? 76 : 82, feedback: "Demo score showing how grammar feedback is displayed." },
+          { name: "Vocabulary", score: isEssay ? 80 : 84, feedback: "Demo score showing expression refinement." },
+          { name: "Structure", score: isEssay ? 74 : 80, feedback: "Demo score showing organization feedback." },
+          { name: "Naturalness", score: isEssay ? 81 : 83, feedback: "Demo score showing natural English suggestions." }
+        ],
+        issues: [
+          {
+            category: "Demo Mode",
+            original: truncate(text, 120),
+            correction: "Connect the local DeepSeek service for sentence-specific corrections.",
+            explanation: "公开网页不能保存或暴露 API Key，因此这里展示的是模拟报告结构。"
+          }
+        ],
+        optimizations: [
+          { level: "Basic", text: "Use the local AI service to get a direct correction." },
+          { level: "Natural", text: "Run EnglishMate locally to receive more natural alternatives." },
+          { level: "Writing Coach", text: "Essay mode can generate scoring, issue breakdown, and next-step practice suggestions." }
+        ],
+        examples: [
+          "I want to improve my English writing step by step.",
+          "This tool helps me understand why a sentence sounds unnatural.",
+          "A clear explanation makes corrections easier to remember."
+        ],
+        nextSteps: [
+          "Open the GitHub repository and run the local server.",
+          "Paste your own DeepSeek API Key into the local setup panel.",
+          "Analyze one sentence or essay, then review the learning profile."
+        ]
+      };
+    }
+
+    function getUsagePlan() {
+      if (state.mode === "sentence") {
+        return {
+          id: "quick",
+          label: "Quick",
+          hint: "Sentence analysis uses low reasoning and a concise output."
+        };
+      }
+      if (input.value.trim().length <= 1600) {
+        return {
+          id: "standard",
+          label: "Standard",
+          hint: "Short essays use low reasoning with a complete writing report."
+        };
+      }
+      return {
+        id: "deep",
+        label: "Deep",
+        hint: "Long essays use medium reasoning and a larger output budget."
+      };
+    }
+
+    function updateUsageDisplay() {
+      const plan = getUsagePlan();
+      const badge = document.getElementById("usageBadge");
+      badge.className = "usage-badge " + plan.id;
+      badge.textContent = plan.label + (plan.id === "quick" ? " · low usage" : plan.id === "standard" ? " · balanced" : " · detailed");
+      document.getElementById("usageHint").textContent = plan.hint;
+      document.getElementById("charCount").textContent = input.value.length + " / 5000";
+    }
+
+    function setMode(mode) {
+      state.mode = mode === "essay" ? "essay" : "sentence";
+      document.querySelectorAll(".mode-button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.mode === state.mode);
       });
+      document.getElementById("essayOptions").hidden = state.mode !== "essay";
+      document.querySelector(".editor-card").classList.toggle("essay-mode", state.mode === "essay");
+      input.placeholder = state.mode === "essay"
+        ? "Write or paste your English essay here..."
+        : "Write an English sentence here...";
+      updateUsageDisplay();
     }
 
-    function renderResult(sentence, result) {
-      originalSentence.textContent = sentence || "No sentence entered.";
+    function switchView(view) {
+      const profileActive = view === "profile";
+      document.getElementById("coachView").classList.toggle("active", !profileActive);
+      document.getElementById("profileView").classList.toggle("active", profileActive);
+      document.getElementById("coachTab").classList.toggle("active", !profileActive);
+      document.getElementById("profileTab").classList.toggle("active", profileActive);
+      if (profileActive) renderDashboard();
+      document.getElementById("analyzeArea").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function addListItem(list, text, labelText) {
+      const item = document.createElement("li");
+      if (labelText) {
+        const label = document.createElement("strong");
+        label.textContent = labelText + ":";
+        item.append(label, " " + text);
+      } else {
+        item.textContent = text;
+      }
+      list.appendChild(item);
+    }
+
+    function renderResult(entry) {
+      const result = entry.result;
+      state.latest = entry;
+      originalSentence.textContent = entry.text;
       correctedSentence.textContent = result.corrected;
-      explanationText.textContent = result.explanation;
-      resultNote.textContent = result.isGeneric
-        ? "Generic mock structure shown for custom input."
-        : "Mock result matched from the sample library.";
+      explanationText.textContent = result.overallFeedback;
+      document.getElementById("overallScore").textContent = result.score;
+      document.getElementById("originalHeading").textContent = entry.mode === "essay" ? "Original Essay" : "Original Sentence";
+      document.getElementById("correctedHeading").textContent = entry.mode === "essay" ? "Corrected Essay" : "Corrected Sentence";
+      resultNote.textContent = [
+        entry.mode === "essay" ? "Essay" : "Sentence",
+        entry.meta?.usageLabel || "Auto",
+        entry.meta?.model || "DeepSeek"
+      ].join(" · ");
+
+      const scoreGrid = document.getElementById("scoreGrid");
+      scoreGrid.innerHTML = "";
+      result.dimensions.forEach((dimension) => {
+        const item = document.createElement("div");
+        item.className = "summary-item score-dimension";
+        item.title = dimension.feedback;
+        const labelRow = document.createElement("span");
+        const label = document.createElement("b");
+        const score = document.createElement("strong");
+        label.textContent = dimension.name;
+        score.textContent = dimension.score;
+        labelRow.append(label, score);
+        const track = document.createElement("div");
+        track.className = "score-track";
+        track.style.setProperty("--dimension-score", dimension.score + "%");
+        track.appendChild(document.createElement("i"));
+        item.append(labelRow, track);
+        scoreGrid.appendChild(item);
+      });
+
+      issueList.innerHTML = "";
+      document.getElementById("issueTotal").textContent = result.issues.length + (result.issues.length === 1 ? " issue" : " issues");
+      if (!result.issues.length) {
+        const empty = document.createElement("div");
+        empty.className = "no-issues";
+        empty.textContent = "No clear errors found. The suggestions below focus on refinement.";
+        issueList.appendChild(empty);
+      } else {
+        result.issues.forEach((issue) => {
+          const item = document.createElement("article");
+          item.className = "issue-item";
+          const category = document.createElement("span");
+          category.className = "issue-category";
+          category.textContent = issue.category;
+          const change = document.createElement("div");
+          change.className = "issue-change";
+          const changeLabel = document.createElement("span");
+          changeLabel.textContent = "Correction";
+          const wrong = document.createElement("p");
+          wrong.className = "wrong-text";
+          wrong.textContent = issue.original;
+          const correct = document.createElement("p");
+          correct.className = "correct-text";
+          correct.textContent = "→ " + issue.correction;
+          change.append(changeLabel, wrong, correct);
+          const explanation = document.createElement("div");
+          explanation.className = "issue-explanation";
+          const explanationLabel = document.createElement("span");
+          explanationLabel.textContent = "Why it matters";
+          const explanationTextNode = document.createElement("p");
+          explanationTextNode.textContent = issue.explanation;
+          explanation.append(explanationLabel, explanationTextNode);
+          item.append(category, change, explanation);
+          issueList.appendChild(item);
+        });
+      }
 
       optimizationList.innerHTML = "";
-      result.optimizations.forEach(([level, text]) => {
-        const item = document.createElement("li");
-        item.innerHTML = "<strong>" + level + ":</strong> " + text;
-        optimizationList.appendChild(item);
+      result.optimizations.forEach(({ level, text }) => {
+        addListItem(optimizationList, text, level);
       });
 
       exampleList.innerHTML = "";
-      result.examples.forEach((example) => {
-        const item = document.createElement("li");
-        item.textContent = example;
-        exampleList.appendChild(item);
-      });
+      result.examples.forEach((example) => addListItem(exampleList, example));
+      nextStepList.innerHTML = "";
+      result.nextSteps.forEach((step) => addListItem(nextStepList, step));
 
       feedbackMessage.classList.remove("show");
       document.querySelectorAll(".feedback-tag").forEach((tag) => tag.classList.remove("selected"));
+      emptyState.classList.remove("error");
       emptyState.style.display = "none";
       resultPanel.classList.add("show");
     }
 
-    function analyzeSentence() {
-      const sentence = normalizeSentence(input.value);
-      const result = mockResults[sentence] || genericResult;
+    function showAnalysisError(message) {
+      resultPanel.classList.remove("show");
+      emptyTitle.textContent = "Analysis could not be completed.";
+      emptyMessage.textContent = message;
+      emptyState.classList.add("error");
+      emptyState.style.display = "grid";
+    }
+
+    function getStats() {
+      const total = state.history.length;
+      const issues = state.history.flatMap((entry) => entry.result?.issues || []);
+      const average = total
+        ? Math.round(state.history.reduce((sum, entry) => sum + Number(entry.result?.score || 0), 0) / total)
+        : 0;
+      const counts = issues.reduce((map, issue) => {
+        map[issue.category] = (map[issue.category] || 0) + 1;
+        return map;
+      }, {});
+      const ranking = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      return { total, issues, average, ranking };
+    }
+
+    function renderHistory() {
+      const list = document.getElementById("historyList");
+      list.innerHTML = "";
+      if (!state.history.length) {
+        const empty = document.createElement("div");
+        empty.className = "history-empty";
+        empty.textContent = "还没有写作记录。完成一次分析后，报告会保存在这里。";
+        list.appendChild(empty);
+        return;
+      }
+
+      state.history.forEach((entry) => {
+        const item = document.createElement("button");
+        item.type = "button";
+        item.className = "history-item";
+        item.dataset.historyId = entry.id;
+        const date = document.createElement("span");
+        date.className = "history-date";
+        date.textContent = formatDate(entry.createdAt);
+        const copy = document.createElement("span");
+        copy.className = "history-copy";
+        const title = document.createElement("strong");
+        title.textContent = entry.title || truncate(entry.text, 58);
+        const corrected = document.createElement("span");
+        corrected.textContent = truncate(entry.result?.corrected, 82);
+        copy.append(title, corrected);
+        const meta = document.createElement("span");
+        meta.className = "history-meta";
+        meta.textContent = (entry.mode === "essay" ? "Essay" : "Sentence") + " · " + (entry.result?.issues?.length || 0) + " issues";
+        const score = document.createElement("strong");
+        score.className = "history-score";
+        score.textContent = entry.result?.score ?? "—";
+        item.append(date, copy, meta, score);
+        list.appendChild(item);
+      });
+    }
+
+    function renderDashboard() {
+      const stats = getStats();
+      const top = stats.ranking[0];
+      document.getElementById("historyBadge").textContent = stats.total;
+      document.getElementById("averageScore").textContent = stats.total ? stats.average : "—";
+      document.querySelector(".score-orbit").style.setProperty("--score-angle", (stats.total ? stats.average * 3.6 : 0) + "deg");
+      document.getElementById("practiceCount").textContent = stats.total;
+      document.getElementById("issueCount").textContent = stats.issues.length;
+      document.getElementById("topWeakness").textContent = top?.[0] || "完成一次分析后生成";
+      document.getElementById("focusHint").textContent = top
+        ? `在全部问题中出现 ${top[1]} 次，建议下一篇写作时优先检查。`
+        : "系统会从本地历史记录中识别你的高频错误。";
+      document.getElementById("profilePractices").textContent = stats.total;
+      document.getElementById("profileAverage").textContent = stats.total ? stats.average : "—";
+      document.getElementById("profileIssues").textContent = stats.issues.length;
+      document.getElementById("profileFocus").textContent = top?.[0] || "—";
+      document.getElementById("portraitTitle").textContent = top
+        ? `当前最值得关注：${top[0]}`
+        : "完成第一次分析，建立你的学习画像。";
+      document.getElementById("portraitSummary").textContent = top
+        ? `你已经完成 ${stats.total} 次练习。${top[0]}共出现 ${top[1]} 次，下一阶段可以围绕这一问题进行针对性复盘。`
+        : "EnglishMate 会根据历史错误频率和评分，为你总结下一阶段的练习重点。";
+
+      const bars = document.getElementById("weaknessBars");
+      bars.innerHTML = "";
+      if (!stats.ranking.length) {
+        const empty = document.createElement("div");
+        empty.className = "history-empty";
+        empty.textContent = "暂无错误数据";
+        bars.appendChild(empty);
+      } else {
+        const max = stats.ranking[0][1];
+        stats.ranking.forEach(([category, count]) => {
+          const row = document.createElement("div");
+          row.className = "weakness-row";
+          const name = document.createElement("span");
+          name.textContent = category;
+          const track = document.createElement("div");
+          track.className = "weakness-track";
+          track.style.setProperty("--bar-width", Math.round(count / max * 100) + "%");
+          track.appendChild(document.createElement("i"));
+          const value = document.createElement("strong");
+          value.textContent = count;
+          row.append(name, track, value);
+          bars.appendChild(row);
+        });
+      }
+      renderHistory();
+    }
+
+    async function analyzeWriting() {
+      const text = input.value.trim();
+
+      if (!text) {
+        showAnalysisError(state.mode === "essay" ? "Please enter an English essay first." : "Please enter an English sentence first.");
+        input.focus();
+        return;
+      }
+
+      if (window.location.protocol === "file:") {
+        showAnalysisError("Open the local app through start-local.ps1 so the secure API proxy is available.");
+        return;
+      }
+
+      if (!state.apiReady) {
+        if (state.staticDemo || !isLocalServiceHost()) {
+          const entry = {
+            id: Date.now().toString(36) + Math.random().toString(16).slice(2),
+            createdAt: new Date().toISOString(),
+            mode: state.mode,
+            title: document.getElementById("essayTitle").value.trim(),
+            goal: document.getElementById("writingGoal").value,
+            text,
+            result: createStaticDemoResult(text, state.mode),
+            meta: {
+              usageLabel: "Static demo",
+              model: "GitHub Pages"
+            }
+          };
+          state.history.unshift(entry);
+          state.history = state.history.slice(0, MAX_HISTORY);
+          saveHistory();
+          renderResult(entry);
+          renderDashboard();
+          resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+        document.getElementById("setupNotice").hidden = false;
+        showAnalysisError("请先在页面上方粘贴 DeepSeek API Key 并点击“保存并启用”。");
+        document.getElementById("apiKeyInput").focus();
+        return;
+      }
 
       analyzeButton.disabled = true;
       analyzeRow.classList.add("is-loading");
       analyzeText.textContent = "Analyzing";
 
-      window.setTimeout(() => {
-        renderResult(sentence, result);
-        setActiveExample(mockResults[sentence] ? sentence : "");
+      try {
+        const response = await fetch("/api/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            text,
+            mode: state.mode,
+            title: document.getElementById("essayTitle").value,
+            goal: document.getElementById("writingGoal").value
+          })
+        });
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(payload.error || "The AI service returned an unexpected error.");
+        }
+
+        const entry = {
+          id: Date.now().toString(36) + Math.random().toString(16).slice(2),
+          createdAt: new Date().toISOString(),
+          mode: state.mode,
+          title: document.getElementById("essayTitle").value.trim(),
+          goal: document.getElementById("writingGoal").value,
+          text,
+          result: payload.result,
+          meta: payload.meta
+        };
+        state.history.unshift(entry);
+        state.history = state.history.slice(0, MAX_HISTORY);
+        saveHistory();
+        renderResult(entry);
+        renderDashboard();
+        resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (error) {
+        showAnalysisError(error.message || "Unable to connect to the local AI service.");
+      } finally {
         analyzeButton.disabled = false;
         analyzeRow.classList.remove("is-loading");
-        analyzeText.textContent = "Analyze";
-      }, 650);
+        analyzeText.textContent = "Analyze writing";
+      }
+    }
+
+    async function checkApiStatus() {
+      try {
+        const response = await fetch("/api/health");
+        const data = await response.json();
+        state.apiReady = Boolean(data.ready);
+        document.getElementById("apiDot").className = "api-dot " + (data.ready ? "online" : "offline");
+        document.getElementById("apiStatus").textContent = data.ready ? `AI ready · ${data.model}` : "API key required";
+        document.getElementById("setupNotice").hidden = data.ready;
+      } catch {
+        state.apiReady = false;
+        state.staticDemo = !isLocalServiceHost();
+        document.getElementById("apiDot").className = "api-dot offline";
+        document.getElementById("apiStatus").textContent = state.staticDemo ? "Portfolio demo" : "Local service unavailable";
+        document.getElementById("setupNotice").hidden = state.staticDemo;
+      }
     }
 
     startButton.addEventListener("click", () => {
@@ -1454,23 +2201,85 @@
       input.focus();
     });
 
-    exampleButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        input.value = button.dataset.example;
-        setActiveExample(button.dataset.example);
-        feedbackMessage.classList.remove("show");
-      });
+    document.querySelectorAll(".mode-button").forEach((button) => {
+      button.addEventListener("click", () => setMode(button.dataset.mode));
     });
-
-    input.addEventListener("input", () => {
-      setActiveExample(normalizeSentence(input.value));
+    document.querySelectorAll(".studio-tab").forEach((button) => {
+      button.addEventListener("click", () => switchView(button.dataset.view));
     });
-
-    analyzeButton.addEventListener("click", analyzeSentence);
+    document.getElementById("openProfileButton").addEventListener("click", () => switchView("profile"));
+    document.getElementById("backToCoachButton").addEventListener("click", () => switchView("coach"));
+    analyzeButton.addEventListener("click", analyzeWriting);
+    input.addEventListener("input", updateUsageDisplay);
 
     input.addEventListener("keydown", (event) => {
       if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
-        analyzeSentence();
+        analyzeWriting();
+      }
+    });
+
+    document.getElementById("copyCorrection").addEventListener("click", async () => {
+      if (!state.latest) return;
+      await navigator.clipboard.writeText(state.latest.result.corrected);
+      document.getElementById("copyCorrection").textContent = "Copied";
+      window.setTimeout(() => document.getElementById("copyCorrection").textContent = "Copy", 1400);
+    });
+
+    document.getElementById("historyList").addEventListener("click", (event) => {
+      const item = event.target.closest("[data-history-id]");
+      if (!item) return;
+      const entry = state.history.find((record) => record.id === item.dataset.historyId);
+      if (!entry) return;
+      setMode(entry.mode);
+      input.value = entry.text;
+      document.getElementById("essayTitle").value = entry.title || "";
+      document.getElementById("writingGoal").value = entry.goal || "General writing";
+      updateUsageDisplay();
+      renderResult(entry);
+      switchView("coach");
+      window.setTimeout(() => resultPanel.scrollIntoView({ behavior: "smooth", block: "start" }), 220);
+    });
+
+    document.getElementById("clearHistory").addEventListener("click", () => {
+      if (!state.history.length || !window.confirm("Clear all local EnglishMate history?")) return;
+      state.history = [];
+      saveHistory();
+      renderDashboard();
+    });
+
+    document.getElementById("saveKeyButton").addEventListener("click", async () => {
+      const keyInput = document.getElementById("apiKeyInput");
+      const saveButton = document.getElementById("saveKeyButton");
+      const apiKey = keyInput.value.trim();
+      if (!apiKey.startsWith("sk-") || apiKey.length < 24) {
+        showAnalysisError("请输入完整的 DeepSeek API Key。");
+        keyInput.focus();
+        return;
+      }
+
+      saveButton.disabled = true;
+      saveButton.textContent = "正在启用...";
+      try {
+        const response = await fetch("/api/setup-key", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ apiKey })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || "API Key 设置失败。");
+        keyInput.value = "";
+        state.apiReady = true;
+        document.getElementById("setupNotice").hidden = true;
+        document.getElementById("apiDot").className = "api-dot online";
+        document.getElementById("apiStatus").textContent = `AI ready · ${data.model}`;
+        emptyState.classList.remove("error");
+        emptyTitle.textContent = "AI service is ready.";
+        emptyMessage.textContent = "Enter a sentence or essay, then click Analyze writing.";
+      } catch (error) {
+        showAnalysisError(error.message || "API Key 设置失败。");
+      } finally {
+        saveButton.disabled = false;
+        saveButton.textContent = "保存并启用";
       }
     });
 
@@ -1482,6 +2291,10 @@
       event.target.classList.add("selected");
       feedbackMessage.classList.add("show");
     });
+
+    setMode("sentence");
+    renderDashboard();
+    checkApiStatus();
   </script>
 </body>
 </html>
