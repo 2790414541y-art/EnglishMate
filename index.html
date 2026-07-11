@@ -1753,8 +1753,7 @@
       mode: "sentence",
       history: loadHistory(),
       latest: null,
-      apiReady: false,
-      staticDemo: false
+      apiReady: false
     };
 
     function loadHistory() {
@@ -2233,31 +2232,14 @@
       }
 
       if (!state.apiReady) {
-        if (state.staticDemo || !isLocalServiceHost()) {
-          const entry = {
-            id: Date.now().toString(36) + Math.random().toString(16).slice(2),
-            createdAt: new Date().toISOString(),
-            mode: state.mode,
-            title: document.getElementById("essayTitle").value.trim(),
-            goal: document.getElementById("writingGoal").value,
-            text,
-            result: createStaticDemoResult(text, state.mode),
-            meta: {
-              usageLabel: "Interactive demo",
-              model: "Public preview"
-            }
-          };
-          state.history.unshift(entry);
-          state.history = state.history.slice(0, MAX_HISTORY);
-          saveHistory();
-          renderResult(entry);
-          renderDashboard();
-          resultPanel.scrollIntoView({ behavior: "smooth", block: "start" });
-          return;
+        const setupNotice = document.getElementById("setupNotice");
+        setupNotice.hidden = !isLocalServiceHost();
+        if (isLocalServiceHost()) {
+          showAnalysisError("请先在页面上方粘贴 DeepSeek API Key 并点击“保存并启用”。");
+          document.getElementById("apiKeyInput").focus();
+        } else {
+          showAnalysisError("AI 后端尚未配置完成，请在部署平台设置 DEEPSEEK_API_KEY 后重试。");
         }
-        document.getElementById("setupNotice").hidden = false;
-        showAnalysisError("请先在页面上方粘贴 DeepSeek API Key 并点击“保存并启用”。");
-        document.getElementById("apiKeyInput").focus();
         return;
       }
 
@@ -2313,14 +2295,13 @@
         const data = await response.json();
         state.apiReady = Boolean(data.ready);
         document.getElementById("apiDot").className = "api-dot " + (data.ready ? "online" : "offline");
-        document.getElementById("apiStatus").textContent = data.ready ? `AI ready · ${data.model}` : "API key required";
-        document.getElementById("setupNotice").hidden = data.ready;
+        document.getElementById("apiStatus").textContent = data.ready ? `AI ready · ${data.model}` : "AI setup required";
+        document.getElementById("setupNotice").hidden = data.ready || !isLocalServiceHost();
       } catch {
         state.apiReady = false;
-        state.staticDemo = !isLocalServiceHost();
-        document.getElementById("apiDot").className = "api-dot " + (state.staticDemo ? "demo" : "offline");
-        document.getElementById("apiStatus").textContent = state.staticDemo ? "Demo ready" : "Local service unavailable";
-        document.getElementById("setupNotice").hidden = state.staticDemo;
+        document.getElementById("apiDot").className = "api-dot offline";
+        document.getElementById("apiStatus").textContent = "AI service unavailable";
+        document.getElementById("setupNotice").hidden = !isLocalServiceHost();
       }
     }
 
